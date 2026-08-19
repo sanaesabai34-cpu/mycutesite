@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Special Message for You ✨</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffe6ea 0%, #fed1d6 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* Password Overlay */
+    .lock-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffe6ea;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .lock-screen input {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 2px solid #ff6b81;
+      border-radius: 20px;
+      margin: 15px 0;
+      text-align: center;
+      outline: none;
+    }
+
+    /* Floating Hearts Animation */
+    .heart {
+      position: fixed;
+      font-size: 1.5rem;
+      color: #ff6b81;
+      animation: floatUp 4s linear infinite;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Main Container */
+    .card-container {
+      position: relative;
+      z-index: 10;
+      background: #ffffff;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 15px 35px rgba(255, 107, 129, 0.2);
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4757;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #777;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    /* Photo Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid #ffe6ea;
+    }
+
+    /* Buttons */
+    .btn {
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 107, 129, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff4757;
+      transform: scale(1.05);
+    }
+
+    .message-box {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      text-align: left;
+      background: #fff0f3;
+      border-radius: 12px;
+      color: #444;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .message-box.open {
+      max-height: 300px;
+      opacity: 1;
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px dashed #ff6b81;
+      overflow-y: auto;
+    }
+    
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+      position: relative;
+      min-height: 50px;
+    }
+
+    #noBtn {
+      position: absolute;
+      background-color: #a4b0be;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Password Screen (Optional) -->
+  <div class="lock-screen" id="lockScreen">
+    <h1>🔒 Passcode Required</h1>
+    <p class="subtitle">Enter the secret key to open (Default:1234)</p>
+    <input type="password" id="passInput" placeholder="Enter code..." />
+    <button class="btn" onclick="checkPassword()">Unlock 💖</button>
+  </div>
+
+  <!-- Background Music (Replace audio src with your own MP3 link) -->
+  <audio id="bgMusic" loop>
+    <source src="C:\Users\Sanae Sbai\Desktop\mycutesite\music.mp3.mpeg" type="audio/mpeg" />
+  </audio>
+
+  <!-- Main Card -->
+  <div class="card-container">
+    <h1>A Little Note For You,My gugma! ✨</h1>
+    <p class="subtitle">Please,Click below to open your message!</p>
+
+    <div class="photo-grid">
+      <img src="C:\Users\Sanae Sbai\Desktop\mycutesite\ilyy.jpeg" alt=" Memory1 " />
+      <img src="C:\Users\Sanae Sbai\Desktop\mycutesite\ily.jpeg" alt=" Memory2 " />
+    </div>
+
+    <button class="btn" onclick="toggleMessage()">Tap to Read Message 💌</button>
+
+    <div class="message-box" id="secretMessage">
+      <p>Hiii my dear Lyly! 🌸</p>
+      <br />
+      <p>I'm writing this for you just to tell you how happy i am to have you in my life,I know that i've said that so many times aleady but i can't help it but feel the urge to keep remiding you of how much i love you. and to be honest,i think you've done a lot of efforts for me while all i did was saying raw words. but i hope that you know that your presence,your efforts and everything you do for me means so so much for me! but please never forget that i really do love you. also,never forget that i am so so proud of you,i know that you've been thro a lot but you still chose to be the amazing human being you are! and i really admire your courage,i hope that you know that you are worth so much more than what you think and i'll do my best to make you see how much of an incredible person you are! Another thing,you've mentioned multiple times that you feel as if you are not giving me "enough" love so i want you to know that you make me feel so loved,i've never felt THAT loved before, you're so warm,gentle and patient with me and that's making me feel so safe and comfortable with you,which made me open up about my feelings so quickly. i really hope that one day,you'll find someone who will love you how truly you deserve to be loved but until then i'll be the one who gives all the love that you deserve. even though,i'm sure that you deserve so much more than that but i promise to give youall the love and the tendress i have. you know? there's sooo much more that i want to say but i just can't put them into words,so i'll just hope that you know how genuine my feelings are for you. also,i promised to take care of you and i know that we were just playing back then but i really meant it. you're so rare and precious and that makes me want to be always there by your side to protect you from anything that might hurt you, but that doesn't mean that i think you are incapable of taking care of yourself,not at all. It's just that's how i want to love you. i'm really willing to learn how to love you,so please teach me how you want to be loved.</p>
+    </div>
+
+    <!-- Interactive Prompt Section -->
+    <div class="question-section">
+      <p style="font-weight: 600; color: #ff4757;" id="questionText">Will you be my dearest and favourite friend forever?!</p>
+      <div class="button-group">
+        <button class="btn" onclick="sayYes()">Yes! 💖</button>
+        <button class="btn" id="noBtn" onmouseover="moveNoButton()">No 😞</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Password Verification
+    function checkPassword() {
+      const input = document.getElementById('passInput').value;
+      // Change '1234' to any secret passcode you prefer
+      if (input === '1234') {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('bgMusic').play().catch(() => {});
+      } else {
+        alert('Wrong code! Try again 🤫');
+      }
+    }
+
+    // 2. Open Secret Message
+    function toggleMessage() {
+      document.getElementById('secretMessage').classList.toggle('open');
+    }
+
+    // 3. Playful "No" Button Evasion
+    function moveNoButton() {
+      const btn = document.getElementById('noBtn');
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 100 - 50;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // 4. "Yes" Button Action
+    function sayYes() {
+      document.getElementById('questionText').innerHTML = "Yay!naksss!it's a promise then 🤙and i promise to always adore you! ";
+      document.getElementById('noBtn').style.display = 'none';
+    }
+
+    // 5. Floating Hearts Effect
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
